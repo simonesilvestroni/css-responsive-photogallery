@@ -1,0 +1,226 @@
+```scss
+// ------------------------------------------------ \\
+// $M2M-IMAGEGALLERY
+//
+// Example usage in a post or page:
+//
+// {%- 
+//    include pattern-imagegallery.html 
+//    folder="/assets/images/my-gallery/" 
+//    id="1"
+// -%} 
+// ------------------------------------------------ //
+
+.m2m-img-gallery-thumb {
+  width: $m2m-gallery-thumb-w;
+  height: $m2m-gallery-thumb-h;
+}
+
+
+// ------------------------------------------------ \\
+// $M2M-MODAL
+//
+// Custom pure CSS modal window
+// ------------------------------------------------ //
+
+.m2m-modal-container {
+  position: relative;
+  width: 100%;
+  [type="checkbox"]:checked,
+  [type="checkbox"]:not(:checked) {
+    @extend .visually-hidden;
+  }
+}
+.m2m-modal-btn:checked + label,
+.m2m-modal-btn:not(:checked) + label {
+  position: relative;
+  transition: all 200ms linear;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  cursor: pointer;
+}
+.m2m-modal-btn:checked + label:after,
+.m2m-modal-btn:not(:checked) + label:after {
+  position: fixed;
+  content: '❌';
+  z-index: 11000;
+  top: 4px;
+  right: 4px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1rem;
+  text-align: center;
+  background-color: $white;
+  border-radius: 10em;
+  transition: all 200ms linear;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    top: 12px;
+    right: 12px;
+  }
+}
+.m2m-modal-btn:checked + label:hover:after,
+.m2m-modal-btn:not(:checked) + label:hover:after {
+  background-color: $background-l-20;
+}
+.m2m-modal-btn:checked + label:after {
+  transition: opacity 300ms 300ms ease, transform 300ms 300ms ease, background-color 250ms linear, color 250ms linear;
+  opacity: 0.9;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.m2m-modal {
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  overflow-x: hidden;
+  background-color: rgba($black,.8);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms 500ms ease;
+}
+.m2m-modal-btn:checked ~ .m2m-modal {
+  pointer-events: auto;
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+.m2m-modal-wrap {
+  width: 95vw;
+  height: 95vh;
+  margin: auto;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #000;
+  align-self: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+}
+.m2m-modal-wrap img {
+  width: auto;
+  max-height: 78vh;
+  margin: 0 auto;
+}
+.m2m-modal-btn:checked ~ .m2m-modal .m2m-modal-wrap {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms 500ms ease, transform 350ms 500ms ease;
+}
+
+
+// ------------------------------------------------ \\
+// $M2M-CAROUSEL
+//
+// Custom pure CSS carousel for image galleries
+// ------------------------------------------------ //
+
+/* purgecss start ignore */
+.m2m-carousel-container {
+  height: 95vh;
+}
+
+.m2m-carousel {
+  width: 95vw;
+  height: auto;
+  contain: strict;
+}
+
+.m2m-carousel-scroll {
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+    @-moz-document url-prefix() {
+      scroll-behavior: auto;
+    }
+  }
+  display: flex;
+  overflow-y: hidden;
+  width: 100%;
+  height: calc(100% - 160px);
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.m2m-carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.m2m-carousel-scroll-item {
+  min-width: 95vw;
+  text-align: center;
+}
+
+.m2m-carousel-scroll-item > img {
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.m2m-carousel-scroll-item > img:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.m2m-carousel-scroll-item-outer {
+  margin: 1vw;
+}
+
+.m2m-carousel-scroll-item-outer:first-of-type {
+  margin: 0;
+}
+
+@supports (scroll-snap-align: start) {
+  .m2m-carousel-scroll {
+    scroll-snap-type: x mandatory;
+  }
+  .m2m-carousel-scroll-item-outer {
+    scroll-snap-align: center;
+  }
+}
+@supports not (scroll-snap-align: start) {
+  .m2m-carousel-scroll {
+    scroll-snap-type: mandatory;
+    scroll-snap-destination: 0 50%;
+    scroll-snap-points-x: repeat(100%);
+  }
+  .m2m-carousel-scroll-item-outer {
+    scroll-snap-coordinate: 0 0;
+  }
+}
+
+#m2m-slider-nav {
+  display: flex;
+  justify-content: center;
+  height: 120px;
+  margin: 20px auto;
+
+  a {
+    text-decoration: none;
+    z-index: 1;
+    margin: 0 0.5rem;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      max-height: 120px;
+    }
+  }
+}
+.m2m-image-gallery-caption {
+  width: $m2m-gallery-thumb-caption;
+}
+```
