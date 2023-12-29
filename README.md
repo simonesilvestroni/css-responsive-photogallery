@@ -4,4 +4,4 @@ Companion gists for Minutes to Midnight's related [case study](https://minutesto
 
 ## Notes
 
-- The markup is bloated with a ton of utility classes from Bootstrap, as that was the CSS framework I was using back then (I sonce moved away from the concept).
+- The markup is bloated with a ton of _utility classes_ from Bootstrap, as that was the CSS framework I was using back then (I since moved away from the concept).
