@@ -4,7 +4,7 @@ Companion technical gists for Minutes to Midnight’s related [case study](https
 
 ## Disclaimer
 
-The markup is bloated with many _utility classes_ from Bootstrap v5, because that was the CSS framework I was using back then. I since moved away from the concept altogether.
+The markup in the source files is bloated with many _utility classes_ from Bootstrap v5, because that was the CSS framework I was using back then. I since moved away from the concept altogether.
 
 ---
 
